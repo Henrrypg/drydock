@@ -16,6 +16,11 @@ spec:
       template:
         spec:
           restartPolicy: OnFailure
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            fsGroupChangePolicy: "OnRootMismatch"
           containers:
             - name: backup
               image: {{ BACKUP_IMAGE }}
@@ -49,7 +54,7 @@ spec:
               args: ["FILENAME=$(date +'%Y-%m-%d').sql.gz && \
                     mysqldump -u $MYSQL_ROOT_USERNAME -h $MYSQL_HOST -P $MYSQL_PORT \
                     --password=$MYSQL_ROOT_PASSWORD --all-databases --single-transaction --flush-logs \
-                    | gzip > $FILENAME && aws {% if BACKUP_CUSTOM_STORAGE_ENDPOINT %} --endpoint-url $BACKUP_CUSTOM_STORAGE_ENDPOINT {% endif %} s3 mv $FILENAME s3://$S3_BUCKET_NAME/$BUCKET_PATH/mysql/"]
+                    | gzip > /data/$FILENAME && aws {% if BACKUP_CUSTOM_STORAGE_ENDPOINT %} --endpoint-url $BACKUP_CUSTOM_STORAGE_ENDPOINT {% endif %} s3 mv /data/$FILENAME s3://$S3_BUCKET_NAME/$BUCKET_PATH/mysql/"]
           {% if BACKUP_K8S_USE_EPHEMERAL_VOLUMES %}
           volumes:
             - name: backup-volume
@@ -80,6 +85,11 @@ spec:
       template:
         spec:
           restartPolicy: OnFailure
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            fsGroupChangePolicy: "OnRootMismatch"
           containers:
             - name: backup
               image: {{ BACKUP_IMAGE }}
@@ -113,7 +123,7 @@ spec:
               args: ["FILENAME=$(date +'%Y-%m-%d').gz && \
               mongodump {% if MONGODB_USERNAME %} --username $MONGODB_USERNAME --password $MONGODB_PASSWORD --authenticationDatabase=admin {% endif %}\
               --host $MONGODB_HOST:$MONGODB_PORT --gzip \
-              --archive=$FILENAME && aws {% if BACKUP_CUSTOM_STORAGE_ENDPOINT %} --endpoint-url $BACKUP_CUSTOM_STORAGE_ENDPOINT {% endif %} s3 mv $FILENAME s3://$S3_BUCKET_NAME/$BUCKET_PATH/mongo/"]
+              --archive=/data/$FILENAME && aws {% if BACKUP_CUSTOM_STORAGE_ENDPOINT %} --endpoint-url $BACKUP_CUSTOM_STORAGE_ENDPOINT {% endif %} s3 mv /data/$FILENAME s3://$S3_BUCKET_NAME/$BUCKET_PATH/mongo/"]
           {% if BACKUP_K8S_USE_EPHEMERAL_VOLUMES %}
           volumes:
             - name: backup-volume
