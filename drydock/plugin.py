@@ -162,6 +162,18 @@ config = {
             "lms-worker",
             "cms-worker",
         ],
+        "NGINX_STATIC_CACHE_CONFIG": {
+            "lms": {
+                "host": "{{ LMS_HOST }}",
+                "path": "/static/",
+                "port": 8000,
+            },
+            "cms": {
+                "host": "{{ CMS_HOST }}",
+                "path": "/static/",
+                "port": 8000,
+            },
+        },
     },
     # Add here settings that don't have a reasonable default for all users. For
     # instance: passwords, secret keys, etc.

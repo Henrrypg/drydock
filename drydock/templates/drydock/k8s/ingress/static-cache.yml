@@ -1,0 +1,26 @@
+{%- for service, config in DRYDOCK_NGINX_STATIC_CACHE_CONFIG.items() %}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-static-{{ service }}
+  namespace: {{ K8S_NAMESPACE }}
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 8m
+    nginx.ingress.kubernetes.io/proxy-buffering: "on"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      {{ patch("static-cache-config") | indent(6)}}
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: {{ config["host"] }}
+    http:
+      paths:
+        - pathType: Prefix
+          path: {{ config["path"]}}
+          backend:
+            service:
+              name: {% if DRYDOCK_BYPASS_CADDY -%}{{ service }}{% else -%}caddy{% endif %}
+              port:
+                number: {% if DRYDOCK_BYPASS_CADDY -%}{{ config["port"] }}{% else -%}80{% endif %}
+{%- endfor %}
