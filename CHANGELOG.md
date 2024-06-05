@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/eduNEXT/drydock/compare/v16.2.2...HEAD)
+## [Unreleased](https://github.com/eduNEXT/drydock/compare/v17.5.0-palm.0...HEAD)
 
 Please do not update the unreleased notes.
 
@@ -19,6 +19,34 @@ Please do not update the unreleased notes.
 - add plugins extra, extracted from namespace template ([#48](https://github.com/eduNEXT/drydock/pull/48)) ([36c033f](https://github.com/eduNEXT/drydock/commit/36c033faecf7c3ebc701a085cb33e55629910d88))
 
 <!-- Content should be placed here -->
+## [v17.5.0-palm.0](https://github.com/eduNEXT/drydock/compare/v16.2.2...v17.5.0-palm.0) - 2024-06-05
+
+### [17.5.0-palm.0](https://github.com/Henrrypg/drydock/compare/v17.4.0...v17.5.0-palm.0) (2024-06-05)
+
+#### Features
+
+- add sync waves filter, auto generate tutor jobs - palm ([#80](https://github.com/Henrrypg/drydock/issues/80)) ([ffbe513](https://github.com/Henrrypg/drydock/commit/ffbe513c26b41169d70ea6eb9d2e3383c1bdcb45))
+- include poddisruptionbudget ([#101](https://github.com/Henrrypg/drydock/issues/101)) ([e8c51cb](https://github.com/Henrrypg/drydock/commit/e8c51cb6ab8bfa0ae6ed1c509072081305f58e5d))
+- iterate over added mfes to add its paths ([#71](https://github.com/Henrrypg/drydock/issues/71)) ([f37ecbb](https://github.com/Henrrypg/drydock/commit/f37ecbb8a4bb80a931c9721e90ce9e4b386c3b99))
+- test ([96e9af7](https://github.com/Henrrypg/drydock/commit/96e9af76099f25632867cd3a140942380c061176))
+
+#### Bug Fixes
+
+- add deployments to sync wave 100 ([#83](https://github.com/Henrrypg/drydock/issues/83)) ([d921485](https://github.com/Henrrypg/drydock/commit/d9214856d3bd9c53d8955381cf2e6d93cf123e17))
+- enable scorm proxy if s3 plugin is installed ([#93](https://github.com/Henrrypg/drydock/issues/93)) ([657f414](https://github.com/Henrrypg/drydock/commit/657f41453a0c23c30c4d96a6c97787d183a66b17))
+- notes annotations throw job skip from argocd sync ([#68](https://github.com/Henrrypg/drydock/issues/68)) ([1d14cc1](https://github.com/Henrrypg/drydock/commit/1d14cc142aa9e9d1576eccf88329dfecd7ad5a3a))
+- run the jobs scripts with '-e' to exit on error ([#76](https://github.com/Henrrypg/drydock/issues/76)) ([4143e98](https://github.com/Henrrypg/drydock/commit/4143e98f7c4521320cc7bf1a47897959765e426e))
+- solve error check k8s workflow palm ([#104](https://github.com/Henrrypg/drydock/issues/104)) ([06fbd69](https://github.com/Henrrypg/drydock/commit/06fbd6987362419d38c7d1d4ab64ec5863036174))
+- verify minio host is defined on scorm proxy ([#96](https://github.com/Henrrypg/drydock/issues/96)) ([87227cc](https://github.com/Henrrypg/drydock/commit/87227cc74f92802eda5d531472c5e868c03c0bbc))
+
+#### Build Systems
+
+- add k8s validation workflow ([#91](https://github.com/Henrrypg/drydock/issues/91)) ([#97](https://github.com/Henrrypg/drydock/issues/97)) ([dd0f78b](https://github.com/Henrrypg/drydock/commit/dd0f78beeccc7c854522a8b131d24987777d1b62))
+
+#### Documentation
+
+- include steps for migration to palm ([#85](https://github.com/Henrrypg/drydock/issues/85)) ([e82801c](https://github.com/Henrrypg/drydock/commit/e82801cf5b7ce9fcc808fd8d4ab4a0a7863a4780))
+
 ## [v16.2.2](https://github.com/eduNEXT/drydock/compare/v16.2.1...v16.2.2) - 2024-01-18
 
 ### [16.2.2](https://github.com/eduNEXT/drydock/compare/v16.2.1...v16.2.2) (2024-01-18)
